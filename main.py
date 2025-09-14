@@ -4,10 +4,14 @@ from src.sorter.len_sort import len_sort
 
 
 def main():
-    # TODO: добавить ввод файла с клавиатуры
-    proteins = parse_file("uniprot_sprot.fasta")
-    for protein in proteins:
-        print(str(protein))
+    mode = int(input('Ввод названия файла с клавиатуры или использовать uniprot_sprot.fasta? (1/2): '))
+    if mode == 2:
+        print('Загрузка файла...')
+        proteins = parse_file("uniprot_sprot.fasta")
+    else:
+        file = input('Название файла из папки data: ').strip()
+        print('Загрузка файла...')
+        proteins = parse_file(file)
 
     protein_code_in = input("Код белка: ").strip().upper()
 

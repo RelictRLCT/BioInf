@@ -2,8 +2,12 @@ from src.protein.protein import Protein
 
 
 def parse_file(file_name: str) -> list[Protein]:
-    with open(f"data/{file_name}", 'r') as f:
-        text = f.read()
+    try:
+        with open(f"data/{file_name}", 'r') as f:
+            text = f.read()
+    except FileNotFoundError:
+        print(f'Файла {file_name} нет в папке data')
+        exit(1)
 
     proteins: list[Protein] = []
     desc = None
