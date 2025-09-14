@@ -1,3 +1,5 @@
+import sys
+
 from src.parser.parser import parse_file
 from src.sorter.bigram_sort import bigram_sort
 from src.sorter.len_sort import len_sort
@@ -13,7 +15,16 @@ def main():
         print('Загрузка файла...')
         proteins = parse_file(file)
 
-    protein_code_in = input("Код белка: ").strip().upper()
+    print("Код белка (в конце два раза enter): ")
+
+    lines = []
+    for line in sys.stdin:
+        line = line.strip()
+        if not line:
+            break
+        lines.append(line)
+
+    protein_code_in = "".join(lines)
 
     proteins = len_sort(protein_code_in, proteins)
     print(f'\nПосле отсеивания по длине осталось {len(proteins)}\n')
@@ -22,7 +33,7 @@ def main():
 
     print(f'Всего результатов: {len(top100)}\n')
     for score, protein in top100:
-        print(f'Сходство: {100*score:.3f}%: {str(protein)}\n')
+        print(f'Сходство: {100*score:.1f}%: {str(protein)}\n')
 
 
 if __name__ == '__main__':
