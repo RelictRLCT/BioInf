@@ -3,8 +3,8 @@ from src.protein.protein import Protein
 
 def len_sort(protein_code_in: str, proteins: list[Protein]) -> list[Protein]:
     code_in_len = len(protein_code_in)
-    min_len = int(code_in_len * 0.5)
-    max_len = int(code_in_len * 1.5)
+    min_len = int(code_in_len * 0.7)
+    max_len = int(code_in_len * 1.3)
 
     new_proteins: list[Protein] = []
     for protein in proteins:
